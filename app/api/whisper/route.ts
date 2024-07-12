@@ -13,12 +13,13 @@ export async function POST(req: NextRequest) {
   if (!formData) return new NextResponse('Invalid body.', { status: 400 });
   const file = formData.get('file') as File;
   if (!file) return new NextResponse('File is required.', { status: 400 });
+  const language = (formData.get('lang') as any) ?? 'en';
 
   try {
     const result = await OPENAI.audio.transcriptions.create({
       file,
       model: 'whisper-1',
-      language: 'en'
+      language
     });
     return new NextResponse(result.text, {
       status: 200,

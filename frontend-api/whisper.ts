@@ -1,6 +1,9 @@
+import { languageState } from '@/lang/language';
+
 export const APITranscribeAudio = async (audioBlob: Blob): Promise<string> => {
   const formData = new FormData();
   formData.append('file', audioBlob, `audio.${audioBlob.type.match(/audio\/(\w+)/)?.[1] ?? 'webm'}`);
+  formData.append('lang', languageState.value);
 
   const response = await fetch('/api/whisper', {
     method: 'POST',
@@ -13,4 +16,3 @@ export const APITranscribeAudio = async (audioBlob: Blob): Promise<string> => {
 
   return await response.text();
 };
-
