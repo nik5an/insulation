@@ -15,16 +15,18 @@ const Footer = () => {
           <p className='text-lg'>&copy; {loc('lb_ft_WebLogo')}</p>
         </div>
         <div className='space-y-2 md:mr-12 mb-4 p-2 text-right w-full'>
-          <a href='/how-to-use' className='block hover:underline'>
+          <Link href='/how-to-use' className='block hover:underline'>
             {loc('btn_ft_HowToUse')}
-          </a>
-
-          <a href='/pricing' className='block hover:underline'>
-            Subscription
-          </a>
-          <a href='/contact' className='block hover:underline'>
+          </Link>
+          <Link href='/donation' className='block hover:underline'>
+            {loc('btn_ft_Donations')}
+          </Link>
+          <Link href='/pricing' className='block hover:underline'>
+            {loc('btn_ft_Subscriptions')}
+          </Link>
+          <Link href='/contact' className='block hover:underline'>
             {loc('btn_ft_Contacts')}
-          </a>
+          </Link>
         </div>
       </div>
     </footer>
@@ -113,3 +115,4 @@ function YoutubeIcon(props: any) {
 }
 
 export default Footer;
+
