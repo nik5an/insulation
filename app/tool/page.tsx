@@ -197,7 +197,6 @@ export default function CreateThread() {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-        <audio src={audioUrl} controls={true}></audio>
         {imagePreviewUrl == null ? (
           <Image src='/images/downloadSign.png' alt='download' height={120} width={120} />
         ) : (
