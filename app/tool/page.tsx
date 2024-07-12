@@ -30,6 +30,7 @@ export default function CreateThread() {
   const [prompt, setPrompt] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const selectorRef = useRef<HTMLInputElement | null>(null);
+  const [audioUrl, setAudioUrl] = useState('');
 
   const recorder = useAudioRecorder();
 
@@ -155,6 +156,8 @@ export default function CreateThread() {
     if (recorder.isRecording) {
       const audioBlob = await recorder.stop();
 
+      setAudioUrl(URL.createObjectURL(audioBlob));
+
       setIsValidating(true);
       const transcribedText = await APITranscribeAudio(audioBlob);
       setPrompt(prev => `${prev} ${transcribedText}`);
@@ -194,6 +197,7 @@ export default function CreateThread() {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
+        <audio src={audioUrl} controls={true}></audio>
         {imagePreviewUrl == null ? (
           <Image src='/images/downloadSign.png' alt='download' height={120} width={120} />
         ) : (
